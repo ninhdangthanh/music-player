@@ -216,12 +216,6 @@ const app = {
       const seekTime = audio.duration / 100 * e.target.value
       audio.currentTime = seekTime
     }
-    
-    setInterval(() => {
-      const seekTime = audio.duration / 100 * progress.value
-      console.log(seekTime)
-      audio.currentTime = seekTime
-    }, 100);
 
   },
   loadCurrentSong : function () {
