@@ -31,54 +31,78 @@
     } ,
     songs: [
       {
-        name: "DEAMIN",
-        singer: "Raftaar x Fortnite",
+        name: "Vách Ngọc Ngà",
+        singer: "Anh Rồng",
         path: "./music/Vach Ngoc Nga - Anh Rong.mp3",
-        image: "https://i.ytimg.com/vi/jTLhQf5KJSc/maxresdefault.jpg"
+        image: "./Image/vách-ngọc-ngà.jpg"
       },
       {
-        name: "Tu Phir Se Aana",
-        singer: "Raftaar x Salim Merchant x Karma",
+        name: "Tình Ka",
+        singer: "G5R",
         path: "./music/Tinh Ka - G5RSquad.mp3",
         image:
-          "https://1.bp.blogspot.com/-kX21dGUuTdM/X85ij1SBeEI/AAAAAAAAKK4/feboCtDKkls19cZw3glZWRdJ6J8alCm-gCNcBGAsYHQ/s16000/Tu%2BAana%2BPhir%2BSe%2BRap%2BSong%2BLyrics%2BBy%2BRaftaar.jpg"
+          "./Image/tình-ka.jpg"
       },
       {
-        name: "Naachne Ka Shaunq",
-        singer: "Raftaar x Brobha V",
+        name: "Save Me",
+        singer: "Deam",
         path:
-          "https://mp3.filmysongs.in/download.php?id=Naachne Ka Shaunq Raftaar Ft Brodha V Mp3 Hindi Song Filmysongs.co.mp3",
-        image: "https://i.ytimg.com/vi/QvswgfLDuPg/maxresdefault.jpg"
+          "./music/SaveMe-Deamn-4780867.mp3",
+        image: "./Image/save-me.jpg"
       },
       {
-        name: "Mantoiyat",
-        singer: "Raftaar x Nawazuddin Siddiqui",
-        path: "https://mp3.vlcmusic.com/download.php?track_id=14448&format=320",
+        name: "Ép Duyên",
+        singer: "Long nón lá",
+        path: "./music/EpDuyenCover-LongNonLaKaydee-6971600.mp3",
         image:
-          "https://a10.gaanacdn.com/images/song/39/24225939/crop_480x480_1536749130.jpg"
+          "./Image/ép-duyên.jpg"
       },
       {
-        name: "Aage Chal",
-        singer: "Raftaar",
-        path: "https://mp3.vlcmusic.com/download.php?track_id=25791&format=320",
+        name: "Hẹn em kiếp sau",
+        singer: "Duy Phúc",
+        path: "./music/Hen Em Kiep Sau - La_ x Duy Phuc x TiB.mp3",
         image:
-          "https://a10.gaanacdn.com/images/albums/72/3019572/crop_480x480_3019572.jpg"
+          "./Image/hệnmKS.jpg"
       },
       {
-        name: "Damn",
-        singer: "Raftaar x kr$na",
+        name: "Chiều thu họa bóng nàng",
+        singer: "Datkka",
         path:
-          "https://mp3.filmisongs.com/go.php?id=Damn%20Song%20Raftaar%20Ft%20KrSNa.mp3",
+          "./music/Chieu Thu Hoa Bong Nang - DatKaa.mp3",
         image:
-          "https://filmisongs.xyz/wp-content/uploads/2020/07/Damn-Song-Raftaar-KrNa.jpg"
+          "./Image/chiều-thu.jpg"
       },
       {
-        name: "Feeling You",
-        singer: "Raftaar x Harjas",
-        path: "https://mp3.vlcmusic.com/download.php?track_id=27145&format=320",
+        name: "Ghé qua",
+        singer: "Bạn có tài mà",
+        path: "./music/Ghe Qua - Tofu_ PC_ Dick.mp3",
         image:
-          "https://a10.gaanacdn.com/gn_img/albums/YoEWlabzXB/oEWlj5gYKz/size_xxl_1586752323.webp"
-      }
+          "./Image/ghé qua.jpg"
+      },
+      {
+        name: "Nevada",
+        singer: "ViceToneCo",
+        path:
+          "./music/Nevada-VicetoneCoziZuehlsdorff-4498121.mp3",
+        image:
+          "./Image/nevada.jpg"
+      },
+      {
+        name: "SummerTime",
+        singer: "K-391",
+        path:
+          "./music/Summertime-K391-3549537.mp3",
+        image:
+          "./Image/summerTime.jpg"
+      },
+      {
+        name: "Tương phùng",
+        singer: "Long nón la X 199x",
+        path:
+          "./music/Tuong Phung - Long Non La_ The 199X.mp3",
+        image:
+          "./Image/tươngphùng.jpg"
+      },
     ],
     render : function () {
       const htmls = this.songs.map(function (song, index) {
@@ -294,9 +318,6 @@
   
       // Tải Thông tin bài hát đầu tiên vào UI khi chạy ứng dụng
       this.loadCurrentSong()
-  
-      // Render playlist
-      this.render()
 
     }
 
