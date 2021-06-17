@@ -1,11 +1,12 @@
 
-  
-
   const $ = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
   
     const playBtn = $('.btn-toggle-play')
     const player = $('.player')
+
+    const nextBtn = $('.btn-next')
+    const prevBtn = $('.btn-prev')
   
     const heading = $('header h2')
     const cdThumb = $('.cd-thumb')
@@ -26,7 +27,7 @@
       {
         name: "Tu Phir Se Aana",
         singer: "Raftaar x Salim Merchant x Karma",
-        path: "https://mp3.vlcmusic.com/download.php?track_id=34213&format=320",
+        path: "./music/Tinh Ka - G5RSquad.mp3",
         image:
           "https://1.bp.blogspot.com/-kX21dGUuTdM/X85ij1SBeEI/AAAAAAAAKK4/feboCtDKkls19cZw3glZWRdJ6J8alCm-gCNcBGAsYHQ/s16000/Tu%2BAana%2BPhir%2BSe%2BRap%2BSong%2BLyrics%2BBy%2BRaftaar.jpg"
       },
@@ -96,7 +97,17 @@
       _this = this
       const cd = $('.cd')
       const cdWidth = cd.offsetWidth
-  
+
+    // Xử lý khi quay dừng
+      const cdThumbAnimate = cdThumb.animate([
+        {transform : "rotate(360deg)"}
+      ],{
+        duration : 100,
+        iterations : Infinity
+      });
+      
+      cdThumbAnimate.pause()
+
     // Xử lý phóng to thu nhỏ CD
       document.onscroll = function () {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -105,7 +116,7 @@
         cd.style.width = (newCdWidth < 0) ? 0 : newCdWidth
         cd.style.opacity = newCdWidth / cdWidth
       }
-  
+      
     // Xử lý khi click play
       playBtn.onclick = function () {
         if (_this.isPlaying) {
@@ -115,16 +126,20 @@
           audio.play()
         }
       }
+
+      console.log(cdThumbAnimate)
   
     // Xử lí khi play 
       audio.onplay = function () {
         player.classList.add('playing')
         _this.isPlaying = true
+        cdThumbAnimate.play()
       }
     // Xử lí khi bị pause
       audio.onpause = function () {
         player.classList.remove('playing')
         _this.isPlaying = false
+        cdThumbAnimate.pause()
       }
   
     //  Khi tiến độ bài hát thay đổi
@@ -141,12 +156,26 @@
         const seekTime = audio.duration / 100 * e.target.value
         audio.currentTime = seekTime
       }
+
+    // Khi next bài hát 
+      nextBtn.onclick = function () {
+        _this.nextSong()
+      }
   
     },
     loadCurrentSong : function () {
       heading.innerHTML = this.currentSong.name
       cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
       audio.src = this.currentSong.path
+    },
+    nextSong : function () {
+      this.currentIndex ++
+
+      if(this.currentIndex > this.songs.length) {
+        this.currentIndex = 0
+      }
+
+      this.loadCurrentSong()
     },
   
     start : function (){
