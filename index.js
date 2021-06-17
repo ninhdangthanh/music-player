@@ -1,6 +1,8 @@
 
   const $ = document.querySelector.bind(document)
   const $$ = document.querySelectorAll.bind(document)
+
+    const PlAYER_STORAGE = "NINHNAM_PLAYER"
   
     const playBtn = $('.btn-toggle-play')
     const player = $('.player')
@@ -14,16 +16,22 @@
     const cdThumb = $('.cd-thumb')
     const audio = $('audio')
     const progress = $('#progress')
+    const playlist = $('.playlist')
   
   
   const app = {
     currentIndex : 0 ,
     isPlaying : false ,
-    isRandom : false ,
+    isRandom : false ,    
     isRepeat : false ,
+    config : JSON.parse(localStorage.getItem(PlAYER_STORAGE)) || {} ,
+    setConfig: function (key, value) {
+      this.config[key] = value;
+      localStorage.setItem(PlAYER_STORAGE, JSON.stringify(this.config));
+    } ,
     songs: [
       {
-        name: "Click Pow Get Down",
+        name: "DEAMIN",
         singer: "Raftaar x Fortnite",
         path: "./music/Vach Ngoc Nga - Anh Rong.mp3",
         image: "https://i.ytimg.com/vi/jTLhQf5KJSc/maxresdefault.jpg"
@@ -74,7 +82,7 @@
     ],
     render : function () {
       const htmls = this.songs.map(function (song, index) {
-          return `<div class="song ${index === this.currentIndex ? "active" : ""}">
+          return `<div class="song ${index === this.currentIndex ? "active" : ""}" data-index = "${index}">
           <div class="thumb" style="background-image: url('${song.image}')">
           </div>
           <div class="body">
@@ -107,7 +115,7 @@
       const cdThumbAnimate = cdThumb.animate([
         {transform : "rotate(360deg)"}
       ],{
-        duration : 100,
+        duration : 5000,
         iterations : Infinity
       });
       
@@ -189,12 +197,14 @@
     // Khi random song
       randomBtn.onclick = function () {
         _this.isRandom = !_this.isRandom
+        _this.setConfig('isRandom', _this.isRandom)  
         randomBtn.classList.toggle('active', _this.isRandom)
       }
 
     // Khi repeat song
       repeatBtn.onclick = function () {
         _this.isRepeat = !_this.isRepeat
+        _this.setConfig('isRepeat', _this.isRepeat)  
         repeatBtn.classList.toggle('active', _this.isRepeat)
       }
 
@@ -207,7 +217,19 @@
         else {
           nextBtn.click()
         }
-        
+      }
+
+      playlist.onclick = function (e) {
+        const songNode = e.target.closest('.song:not(.active)')
+        if (songNode || e.target.closest('.option')) {
+          // Xử lý khi click vào song
+          if (songNode) {
+            _this.currentIndex = Number(songNode.dataset.index)
+
+            _this.loadCurrentSong()
+            audio.play()
+          }
+        }
       }
   
     },
@@ -223,7 +245,14 @@
       heading.innerHTML = this.currentSong.name
       cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
       audio.src = this.currentSong.path
-      
+      this.render()
+    },
+    loadConfig : function () {
+      this.isRandom = this.config.isRandom
+      this.isRepeat = this.config.isRepeat
+      randomBtn.classList.toggle('active', this.isRandom)
+      repeatBtn.classList.toggle('active', this.isRepeat)
+      // this.loadCurrentSong()
     },
     nextSong : function () {
       this.currentIndex ++
@@ -254,6 +283,9 @@
     },
   
     start : function (){
+
+      this.loadConfig()
+
       // Định nghĩa các thuộc tính cho object
       this.defineProperties()
 
