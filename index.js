@@ -101,7 +101,7 @@
         path:
           "./music/Tuong Phung - Long Non La_ The 199X.mp3",
         image:
-          "./Image/tươngphùng.jpg"
+          "./Image/tương-phùng.jpg"
       },
     ],
     render : function () {
