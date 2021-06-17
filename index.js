@@ -34,7 +34,7 @@
         name: "Vách Ngọc Ngà",
         singer: "Anh Rồng",
         path: "./music/Vach Ngoc Nga - Anh Rong.mp3",
-        image: "./Image/vách-ngọc-ngà.jpg"
+        image: "/Image/vách-ngọc-ngà.jpg"
       },
       {
         name: "Tình Ka",
