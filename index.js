@@ -171,6 +171,7 @@
       }
       audio.play()
       _this.render()
+      _this.scrollToActiveSong()
     }
     // Khi prev bài hát
       prevBtn.onclick = function () {
@@ -182,6 +183,7 @@
         }
         audio.play()
         _this.render()
+        _this.scrollToActiveSong()
       }
 
     // Khi random song
@@ -208,6 +210,14 @@
         
       }
   
+    },
+    scrollToActiveSong : function () {
+      setTimeout(() => {
+        $('.song.active').scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }, 300);
     },
     loadCurrentSong : function () {
       heading.innerHTML = this.currentSong.name
