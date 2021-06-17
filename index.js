@@ -74,7 +74,7 @@
     ],
     render : function () {
       const htmls = this.songs.map(function (song, index) {
-          return `<div class="song ${index === this.currentIndex ? "active" : ""} ">
+          return `<div class="song ${index === this.currentIndex ? "active" : ""}">
           <div class="thumb" style="background-image: url('${song.image}')">
           </div>
           <div class="body">
@@ -87,6 +87,7 @@
         </div>`
       })
       $('.playlist').innerHTML = htmls.join('')
+      document.getElementsByClassName('song')[this.currentIndex].classList.add('active')
     },
     
     defineProperties : function () {
@@ -212,6 +213,7 @@
       heading.innerHTML = this.currentSong.name
       cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
       audio.src = this.currentSong.path
+      
     },
     nextSong : function () {
       this.currentIndex ++
