@@ -7,6 +7,8 @@
 
     const nextBtn = $('.btn-next')
     const prevBtn = $('.btn-prev')
+    const randomBtn = $('.btn-random')
+    const repeatBtn = $('.btn-repeat')
   
     const heading = $('header h2')
     const cdThumb = $('.cd-thumb')
@@ -17,6 +19,8 @@
   const app = {
     currentIndex : 0 ,
     isPlaying : false ,
+    isRandom : false ,
+    isRepeat : false ,
     songs: [
       {
         name: "Click Pow Get Down",
@@ -69,8 +73,8 @@
       }
     ],
     render : function () {
-      const htmls = this.songs.map(function (song) {
-          return `<div class="song">
+      const htmls = this.songs.map(function (song, index) {
+          return `<div class="song ${index === this.currentIndex ? "active" : ""} ">
           <div class="thumb" style="background-image: url('${song.image}')">
           </div>
           <div class="body">
@@ -143,7 +147,6 @@
       }
   
     //  Khi tiến độ bài hát thay đổi
-  
       audio.ontimeupdate = function () {
         if (audio.duration) {
           const progressPercent = Math.floor(audio.currentTime * 100 / audio.duration )
@@ -158,8 +161,50 @@
       }
 
     // Khi next bài hát 
-      nextBtn.onclick = function () {
+    nextBtn.onclick = function () {
+      if(_this.isRandom) {
+        _this.playRandomSong()
+      }
+      else {
         _this.nextSong()
+      }
+      audio.play()
+      _this.render()
+    }
+    // Khi prev bài hát
+      prevBtn.onclick = function () {
+        if(_this.isRandom) {
+          _this.playRandomSong()
+        }
+        else {
+          _this.prevSong()
+        }
+        audio.play()
+        _this.render()
+      }
+
+    // Khi random song
+      randomBtn.onclick = function () {
+        _this.isRandom = !_this.isRandom
+        randomBtn.classList.toggle('active', _this.isRandom)
+      }
+
+    // Khi repeat song
+      repeatBtn.onclick = function () {
+        _this.isRepeat = !_this.isRepeat
+        repeatBtn.classList.toggle('active', _this.isRepeat)
+      }
+
+    // Khi bài hát kết thúc
+      audio.onended = function () {
+
+        if(_this.isRepeat){
+          audio.play()
+        }
+        else {
+          nextBtn.click()
+        }
+        
       }
   
     },
@@ -171,9 +216,27 @@
     nextSong : function () {
       this.currentIndex ++
 
-      if(this.currentIndex > this.songs.length) {
+      if(this.currentIndex > (this.songs.length - 1)) {
         this.currentIndex = 0
       }
+
+      this.loadCurrentSong()
+    },
+    prevSong : function () {
+      this.currentIndex --
+
+      if(this.currentIndex < 0) {
+        this.currentIndex = (this.songs.length - 1)
+      }
+
+      this.loadCurrentSong()
+    },
+    playRandomSong : function () {
+      let newIndex 
+      do {
+        newIndex = Math.floor( Math.random() * this.songs.length)
+      } while (newIndex === this.currentIndex);
+      this.currentIndex = newIndex
 
       this.loadCurrentSong()
     },
@@ -181,7 +244,7 @@
     start : function (){
       // Định nghĩa các thuộc tính cho object
       this.defineProperties()
-  
+
       // Lắng nghe xử lí các sự kiện (DOM events)
       this.handleEvent()
   
@@ -190,8 +253,9 @@
   
       // Render playlist
       this.render()
-      
+
     }
+
   
   }
   
