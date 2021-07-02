@@ -44,6 +44,13 @@
           "./Image/tình-ka.jpg"
       },
       {
+        name: "Phận duyên lỡ làng",
+        singer: "Phát Huy T4",
+        path: "./music/Phan Duyen Lo Lang - Phat Huy T4_ Truzg.mp3",
+        image:
+          "./Image/phanduyenlolang.jpg"
+      },
+      {
         name: "Save Me",
         singer: "Deam",
         path:
