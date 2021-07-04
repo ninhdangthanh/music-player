@@ -51,6 +51,13 @@
           "./Image/phanduyenlolang.jpg"
       },
       {
+        name: "Hạ còn vương nắng",
+        singer: "DatKa",
+        path: "./music/HaConVuongNang-DatKaa-7004769.mp3",
+        image:
+          "https://avatar-ex-swe.nixcdn.com/song/2021/04/15/5/b/e/5/1618468925875_640.jpg"
+      },
+      {
         name: "Save Me",
         singer: "Deam",
         path:
