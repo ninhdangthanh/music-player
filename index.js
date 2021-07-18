@@ -62,7 +62,7 @@
         singer: "H2K X JK",
         path: "./music/NgatNgay-H2KJK-6148051.mp3",
         image:
-          "./Image/ngatngay.jpg"
+          "https://lh3.googleusercontent.com/proxy/3tkX5n1Gl8-uMky6r5_UkinKE-HNlpOKDM3sRu-xo8u9r0cw9oRZPk6Q0oqJwhAP-_GxzW01iaLDSse5uZRhyW1bMJt2eSw8rvd3ehI"
       },
       {
         name: "Save Me",  
