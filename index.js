@@ -58,7 +58,14 @@
           "https://avatar-ex-swe.nixcdn.com/song/2021/04/15/5/b/e/5/1618468925875_640.jpg"
       },
       {
-        name: "Save Me",
+        name: "Ngất ngây",
+        singer: "H2K X JK",
+        path: "./music/NgatNgay-H2KJK-6148051.mp3",
+        image:
+          "./Image/ngatngay.jpg"
+      },
+      {
+        name: "Save Me",  
         singer: "Deam",
         path:
           "./music/SaveMe-Deamn-4780867.mp3",
